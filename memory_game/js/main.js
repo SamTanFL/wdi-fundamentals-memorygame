@@ -22,28 +22,29 @@ const cards = [
 }
 ];
 
-let cardId = [];
+let cardId;
 let cardsInPlay = [];
 
 function checkForMatch() {
 	if (cardsInPlay[0] === cardsInPlay[1]) {
-		console.log("You've found a match!");
+		alert("You've found a match!");
 	} else {
-		console.log("Sorry, Try again.")
+		alert("Sorry, Try again.");
 	}
 }
 
 function flipCard() {
-	this.getAttribute('data-id')
+	let cardId = this.getAttribute('data-id')
 	cardsInPlay.push(cards[cardId].rank)
+    this.setAttribute('src', cards[cardId].cardImage);
 	if (cardsInPlay.length === 2) {
-		checkForMatch()
+		checkForMatch();
 	}
 }
 
 function createBoard() {
-	for (var i = 0; i < cards.length; i++) {
-		var cardElement = document.createElement('img');
+	for (let i = 0; i < cards.length; i++) {
+		let cardElement = document.createElement('img');
 		cardElement.setAttribute('src', 'images/back.png');
 		cardElement.setAttribute('data-id', i);
 		cardElement.addEventListener('click', flipCard);
@@ -51,4 +52,4 @@ function createBoard() {
 	}
 }
 
-createBorad();
+createBoard();
